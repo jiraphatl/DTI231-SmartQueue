@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Table Booking</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>Available Tables</h1>
+    <ul>
+        {% for table in tables %}
+            {% if not table.is_booked %}
+                <li>
+                    Table {{ table.table_id }} - Capacity: {{ table.capacity }}
+                    <form action="{{ url_for('book_table', table_id=table.table_id) }}" method="GET">
+                        <button type="submit">Book Now</button>
+                    </form>
+                </li>
+            {% else %}
+                <li>Table {{ table.table_id }} - Booked</li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+</body>
+</html>
