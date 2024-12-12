@@ -15,7 +15,7 @@ def add_user(username, password):
 
 @app.route('/')
 def home():
-    return "Welcome to the Login Page!"
+    return "Welcome to the Home Page!"
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
