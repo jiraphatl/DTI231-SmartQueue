@@ -20,7 +20,7 @@ class Booking:
         self.time_slot = time_slot
 
 # Example data
-tables = [Table(i, 4) for i in range(1, 11)]  # 10 tables with capacity of 4
+tables = [Table(i, 1) for i in range(1, 11)]  # 10 tables with capacity of 4
 bookings = []  # List to store all bookings
 
 # Home page to display available tables
@@ -63,6 +63,7 @@ class Queue:
     
     # เพิ่มข้อมูลในคิว
     def enqueue(self, item):
+        print("Hi")
         self._items.append(item)
     
     # นำข้อมูลออกจากคิว
