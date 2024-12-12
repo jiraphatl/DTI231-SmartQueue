@@ -20,7 +20,7 @@ class Booking:
         self.time_slot = time_slot
 
 # Example data
-tables = [Table(i, 4) for i in range(1, 11)]  # 10 tables with capacity of 4
+tables = [Table(i, 1) for i in range(1, 11)]  # 10 tables with capacity of 4
 bookings = []  # List to store all bookings
 
 # Home page to display available tables
@@ -63,6 +63,7 @@ class Queue:
     
     # เพิ่มข้อมูลในคิว
     def enqueue(self, item):
+        print("Hi")
         self._items.append(item)
     
     # นำข้อมูลออกจากคิว
@@ -71,13 +72,8 @@ class Queue:
             raise IndexError("Queue is empty")
         return self._items.popleft()
     
+    # ดูข้อมูลตัวแรก
     def peek(self):
-        """
-        View the first item in the queue without removing it.
-        
-        :return: First item in the queue
-        :raises IndexError: If the queue is empty
-        """
         if self.is_empty():
             raise IndexError("Queue is empty")
         return self._items[0]
