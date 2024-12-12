@@ -1,69 +1,103 @@
+/* General Styles */
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #ffffff;
+    font-family: 'Arial', sans-serif;
+    background: #f6f5f7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
-.container {
-    width: 100%;
-    max-width: 400px;
-    margin: 50px auto;
+h2, p {
+    margin: 0;
+}
+
+/* Login Page Styles */
+.login-page {
+    background: #f6f5f7;
+}
+
+.login-container {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 400px;
     padding: 20px;
-    border-radius: 10px;
     text-align: center;
 }
 
-.signup-page .header h1, .login-page .header h1 {
+.login-container h2 {
+    color: #333;
     font-size: 24px;
-    color: #d32f2f;
+    margin-bottom: 10px;
 }
 
-.signup-page .header h1 span {
-    color: #ff5722;
+.login-container p {
+    color: #666;
+    margin-bottom: 20px;
 }
 
-form {
+.form-login {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    align-items: center;
 }
 
-input, button {
+.input-group {
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.input-group label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.input-group input {
     width: 100%;
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #ddd;
     border-radius: 5px;
+    font-size: 14px;
+    transition: border-color 0.3s;
 }
 
-button {
-    background-color: #d32f2f;
-    color: white;
+.input-group input:focus {
+    border-color: #ff6b6b;
+    outline: none;
+}
+
+.btn-login {
+    width: 100%;
+    background: #ff6b6b;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
     font-size: 16px;
     cursor: pointer;
-    border: none;
+    transition: background-color 0.3s;
 }
 
-button:hover {
-    background-color: #b71c1c;
-}
-
-.terms {
-    display: flex;
-    align-items: center;
-    font-size: 12px;
+.btn-login:hover {
+    background: #e05656;
 }
 
 .signup-link {
     margin-top: 20px;
     font-size: 14px;
+    color: #666;
 }
 
-.create-account-btn {
-    color: #d32f2f;
+.signup-link a {
+    color: #ff6b6b;
     text-decoration: none;
+    font-weight: bold;
 }
 
-.create-account-btn:hover {
+.signup-link a:hover {
     text-decoration: underline;
 }
-

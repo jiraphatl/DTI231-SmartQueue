@@ -1,22 +1,28 @@
-{% extends "base.html" %}
-
-{% block title %}Login - Restaurant Booking{% endblock %}
-
-{% block content %}
-<div class="container login-page">
-    <div class="header">
-        <h1>SmartQueue</h1>
-        <img src="{{ url_for('static', filename='images/hotpot.png') }}" alt="Hotpot Image">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Restaurant Booking</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body class="login-page">
+    <div class="login-container">
+        <h2>Welcome Back</h2>
+        <p>Please log in to continue</p>
+        <form action="/login" method="POST" class="form-login">
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" placeholder="Enter your username" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            </div>
+            <button type="submit" class="btn-login">Login</button>
+        </form>
+        <p class="signup-link">Don't have an account? <a href="/signup">Sign up</a></p>
     </div>
-    <form method="POST" action="/login">
-        <input type="text" name="username" placeholder="Email or Username" required>
-        <input type="password" name="password" placeholder="Password" required>
-        <button type="submit">Login</button>
-        <a href="#">Forgot Password?</a>
-    </form>
-    <div class="signup-link">
-        <p>or</p>
-        <a href="/signup" class="create-account-btn">Create an Account</a>
-    </div>
-</div>
-{% endblock %}
+</body>
+</html>
+

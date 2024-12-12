@@ -1,9 +1,11 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, flash, session
 
 app = Flask(__name__)
+app.secret_key = "your_secret_key"
 
-# Dummy user data for testing
-users = {}
+# Mock Database
+users = {"admin": {"password": "admin123", "role": "admin"}}
+# Format: {"username": {"password": "password", "role": "role"}}
 
 @app.route('/')
 def home():
@@ -14,31 +16,50 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-
-        if username in users and users[username] == password:
-            return "Login successful! Welcome, {}!".format(username)
+        if username in users and users[username]['password'] == password:
+            session['username'] = username
+            session['role'] = users[username]['role']
+            if users[username]['role'] == 'admin':
+                return redirect(url_for('admin'))
+            return redirect(url_for('user'))
         else:
-            return "Invalid credentials. Please try again."
-
+            flash("Invalid credentials!")
     return render_template('login.html')
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     if request.method == 'POST':
         username = request.form['username']
-        email = request.form['email']
         password = request.form['password']
-        retype_password = request.form['retype_password']
-
+        confirm_password = request.form['confirm_password']
+        if password != confirm_password:
+            flash("Passwords do not match!")
+            return redirect(url_for('signup'))
         if username in users:
-            return "Username already exists. Please choose another one."
-        if password != retype_password:
-            return "Passwords do not match. Please try again."
-
-        users[username] = password
+            flash("Username already exists!")
+            return redirect(url_for('signup'))
+        users[username] = {"password": password, "role": "user"}
+        flash("Account created successfully!")
         return redirect(url_for('login'))
-
     return render_template('signup.html')
+
+@app.route('/admin')
+def admin():
+    if session.get('role') != 'admin':
+        return redirect(url_for('login'))
+    return render_template('admin.html', users=users)
+
+@app.route('/user')
+def user():
+    if session.get('role') != 'user':
+        return redirect(url_for('login'))
+    return render_template('user.html', username=session.get('username'))
+
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('login'))
 
 if __name__ == '__main__':
     app.run(debug=True)
+

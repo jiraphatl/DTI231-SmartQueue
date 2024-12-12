@@ -1,24 +1,19 @@
-{% extends "base.html" %}
-
-{% block title %}Sign Up - Restaurant Booking{% endblock %}
-
-{% block content %}
-<div class="container signup-page">
-    <div class="header">
-        <h1>Let's <span>Create</span> Your Account</h1>
-        <img src="{{ url_for('static', filename='images/sushi.png') }}" alt="Sushi Image">
-    </div>
-    <form method="POST" action="/signup">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Signup</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <h2>Signup</h2>
+    <form action="/signup" method="POST">
         <input type="text" name="username" placeholder="Username" required>
-        <input type="email" name="email" placeholder="Email Address" required>
         <input type="password" name="password" placeholder="Password" required>
-        <input type="password" name="retype_password" placeholder="Retype Password" required>
-        <div class="terms">
-            <input type="checkbox" name="terms" required>
-            <label>I agree to the <a href="#">Terms & Privacy</a></label>
-        </div>
+        <input type="password" name="confirm_password" placeholder="Confirm Password" required>
         <button type="submit">Sign Up</button>
     </form>
-    <p>Have an account? <a href="/login">Sign In</a></p>
-</div>
-{% endblock %}
+    <p>Already have an account? <a href="/login">Login</a></p>
+</body>
+</html>
+
