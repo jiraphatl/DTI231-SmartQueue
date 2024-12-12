@@ -1,37 +1,69 @@
 body {
-    font-family: Arial, sans-serif;
     margin: 0;
-    padding: 0;
-    background-color: #f8f8f8;
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
 }
 
-h1 {
+.container {
+    width: 100%;
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    border-radius: 10px;
     text-align: center;
-    color: #333;
 }
 
-ul {
-    list-style-type: none;
-    padding: 0;
+.signup-page .header h1, .login-page .header h1 {
+    font-size: 24px;
+    color: #d32f2f;
 }
 
-li {
+.signup-page .header h1 span {
+    color: #ff5722;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+input, button {
+    width: 100%;
     padding: 10px;
-    margin: 5px;
-    background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
 
 button {
-    background-color: #4CAF50;
+    background-color: #d32f2f;
     color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
+    font-size: 16px;
     cursor: pointer;
+    border: none;
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: #b71c1c;
 }
+
+.terms {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+}
+
+.signup-link {
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.create-account-btn {
+    color: #d32f2f;
+    text-decoration: none;
+}
+
+.create-account-btn:hover {
+    text-decoration: underline;
+}
+
