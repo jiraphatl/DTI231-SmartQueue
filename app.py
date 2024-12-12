@@ -61,21 +61,12 @@ class Queue:
         """Initialize an empty queue."""
         self._items = deque()
     
+    # เพิ่มข้อมูลในคิว
     def enqueue(self, item):
-        """
-        Add an item to the end of the queue.
-        
-        :param item: Item to be added to the queue
-        """
         self._items.append(item)
     
+    # นำข้อมูลออกจากคิว
     def dequeue(self):
-        """
-        Remove and return the first item from the queue.
-        
-        :return: First item in the queue
-        :raises IndexError: If the queue is empty
-        """
         if self.is_empty():
             raise IndexError("Queue is empty")
         return self._items.popleft()
