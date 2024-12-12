@@ -71,13 +71,8 @@ class Queue:
             raise IndexError("Queue is empty")
         return self._items.popleft()
     
+    # ดูข้อมูลตัวแรก
     def peek(self):
-        """
-        View the first item in the queue without removing it.
-        
-        :return: First item in the queue
-        :raises IndexError: If the queue is empty
-        """
         if self.is_empty():
             raise IndexError("Queue is empty")
         return self._items[0]
