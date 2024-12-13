@@ -2,17 +2,31 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="/static/styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    <h2>Welcome Admin</h2>
-    <h3>Registered Users</h3>
-    <ul>
-        {% for user, details in users.items() %}
-        <li>{{ user }} - Role: {{ details.role }}</li>
-        {% endfor %}
-    </ul>
-    <a href="/logout">Logout</a>
+    <div class="container">
+        <h2>Welcome Admin!</h2>
+        <h3>Registered Users</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Role</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user, details in users.items() %}
+                <tr>
+                    <td>{{ user }}</td>
+                    <td>{{ details.role }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{{ url_for('logout') }}" class="btn btn-primary">Logout</a>
+    </div>
 </body>
 </html>
