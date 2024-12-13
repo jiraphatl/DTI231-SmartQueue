@@ -87,7 +87,7 @@ a {
 header{
     width: 100%;
     padding: 16px 0;
-    background-color: #cc1100;
+    background-color: #1c1c1c;
     position: sticky;
     top: 0%;
     z-index: 1;
@@ -95,7 +95,7 @@ header{
 }
 
 nav {
-    width: 1200px;
+    width: 1000px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -239,7 +239,15 @@ html{
     padding: 60px;
 }
 
+.booking .title{
+    width: 400px;
+    font-size: 80px;
+    color: #fff;
+    margin-top: 16px;
+    text-align: center;
+}
 .sub-title {
+    color: #fff;
     font-size: 26px;
     text-align: center;
     font-weight: 300;
@@ -255,12 +263,14 @@ form {
 }
 
 .input p {
+    color: #fff;
     font-size: 24px;
     font-weight: lighter;
     margin-bottom: 10px;
 }
 
 .first, .mid, .last {
+    color: #fff;
     display: flex;
     align-items: center;
     width: min-content;
@@ -271,25 +281,36 @@ form .input {
     width: 300px;
 }
 
-input, .input-i {
+.input-i {
     outline: none;
     border: 1px solid #ffc901;
     width: 300px;
     display: flex;
     align-items: center;
-    background-color: transparent;
+    background-color: #fff;
     border-radius: 5px;
-    color: #1c1c1c;
+    color: #a4a4a4;
 }
 
 input {
     padding: 14px;
 }
 
+input {
+    outline: none;
+    border: 1px solid #ffc901;
+    width: 300px;
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 5px;
+    color: #1c1c1c;
+}
 .input-i input{
     border: none;
     padding-right: 0;
 }
+
 
 .input-i {
     padding-right: 14px;
@@ -297,7 +318,7 @@ input {
 
 .btn {
     background-color: #ffc901;
-    color: black;
+    color: #000000;
     padding: 15px 70px 10px 70px;
     font-family: 'Overpass', sans-serif;
     font-size: 32px;
@@ -306,31 +327,56 @@ input {
     border: 0;
 }
 
-::-webkit-calender-picker-indicator {
+.custom-date-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    color: #a4a4a4; /* Default text color */
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    appearance: none; /* Remove default styling */
+    -webkit-appearance: none; /* Remove default WebKit styling */
+    cursor: pointer;
+}
+
+.custom-date-input:focus {
+    border-color: #ffc901;
+    color: #000000; /* Change text color when focused */
+}
+
+.custom-date-input::-webkit-calendar-picker-indicator {
     cursor: pointer;
     background-color: #ffc901;
-    padding: 5px;
     border-radius: 3px;
+    padding: 5px;
 }
 
 ::placeholder{
-    color: white;
+    color: #a4a4a4;
 }
 
 select {
     width: 100%;
     padding: 14px;
     background-color: transparent;
-    color: white;
+    color: #a4a4a4;
     border: 0;
     outline: none;
     cursor: pointer;
 }
 
+select:focus {
+    color: #000000; /* เปลี่ยนเป็นสีดำเข้มเมื่อเลือก */
+}
+
 option{
-    color: black;
+    color: #000000;
     padding-top: 20px;
 }
+
+
 
 /* contact */
 .contact {
