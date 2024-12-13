@@ -137,64 +137,7 @@ html{
 }
 
 /* about us */
-
 .about {
-    width: fit-content;
-    min-height: 100vh;
-    background-image: url(/static/images/about.png);
-    background-repeat: no-repeat;
-    background-position: right;
-    background-size: cover;
-    color: #fff;
-    padding: 100px;
-}
-
-.about-text, .title {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.about-text {
-    width: 600px;
-    flex-direction: column;
-}
-
-.title p{
-    margin-left: 50px;
-    margin-right: 50px;
-    font-size: 48px;
-}
-
-.title p span{
-    font-family: 'Atma', cursive;
-}
-
-.title, .about {
-    margin-bottom: 68px;
-}
-
-.about {
-    font-family: 'Overpass', sans-serif;
-    font-weight: 300;
-    text-align: center;
-    font-size: 18px;
-    line-height: 2rem;
-    width: 500px;
-}
-
-.about-text a {
-    font-family: 'Overpass', sans-serif;
-    font-size: 32px;
-}
-
-.about-text a span{
-    color: #ffc901;
-}
-
-/* menu */
-
-.menu {
     width: 100%;
     min-height: 100vh;
     background-image: url(/static/images/bg.png);
@@ -207,12 +150,11 @@ html{
 .keep {
     position: absolute;
     top: 0;
-    left: 10%;
+    left: 0%;
     width: 550px;
-
 }
 
-.menu-text {
+.about-text {
     width: 700px;
     display: flex;
     flex-direction: column;
@@ -220,21 +162,21 @@ html{
     transform: translate(55%, 10%);
 }
 
-.discount {
+.about-text p {
     width: 400px;
-}
-
-.discount p span{
-    font-size: 38px;
-}
-
-.discount p:last-child{
     color: #ffc901;
     font-family: 26px;
     margin-top: 16px;
     text-align: center;
 }
 
+.about-text a {
+    width: 400px;
+    color: #fff;
+    font-family: 26px;
+    margin-top: 16px;
+    text-align: center;
+}
 /* gallery */
 
 .gallery{
