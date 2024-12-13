@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 :root {
     --primary-red: #8B0000;
     --secondary-red: #A52A2A;
@@ -81,10 +82,90 @@ body {
     width: 100%;
     background-color: var(--primary-red);
     color: var(--white);
+=======
+/* General Styles */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background: #f6f5f7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+h2, p {
+    margin: 0;
+}
+
+/* Login Page Styles */
+.login-page {
+    background: #f6f5f7;
+}
+
+.login-container {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    padding: 20px;
+    text-align: center;
+}
+
+.login-container h2 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.login-container p {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.form-login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.input-group {
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.input-group label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: border-color 0.3s;
+}
+
+.input-group input:focus {
+    border-color: #ff6b6b;
+    outline: none;
+}
+
+.btn-login {
+    width: 100%;
+    background: #ff6b6b;
+    color: #fff;
+>>>>>>> f716674c8a238a61f817c1081b65e14aa7be1463
     padding: 10px;
     border: none;
     border-radius: 5px;
+    font-size: 16px;
     cursor: pointer;
+<<<<<<< HEAD
     font-size: 1rem;
     transition: background 0.3s;
 }
@@ -111,4 +192,27 @@ body {
     border-radius: 8px;
     margin-top: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+=======
+    transition: background-color 0.3s;
+}
+
+.btn-login:hover {
+    background: #e05656;
+}
+
+.signup-link {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #666;
+}
+
+.signup-link a {
+    color: #ff6b6b;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.signup-link a:hover {
+    text-decoration: underline;
+>>>>>>> f716674c8a238a61f817c1081b65e14aa7be1463
 }
