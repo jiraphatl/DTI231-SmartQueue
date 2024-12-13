@@ -149,9 +149,18 @@ html{
 
 .keep {
     position: absolute;
-    top: 0;
+    top: 100;
     left: 0%;
     width: 550px;
+}
+
+.about-text .title p {
+    width: 400px;
+    font-size: 80px;
+    color: #fff;
+    margin-top: 16px;
+    text-align: right;
+    margin-left: 850px;
 }
 
 .about-text {
@@ -162,20 +171,22 @@ html{
     transform: translate(55%, 10%);
 }
 
-.about-text p {
-    width: 400px;
+.about-text .aboutus {
+    width: 700px;
     color: #ffc901;
-    font-family: 26px;
+    font-size: 15px;
     margin-top: 16px;
-    text-align: center;
+    text-align: right;
+    margin-left: 550px;
 }
 
 .about-text a {
     width: 400px;
     color: #fff;
-    font-family: 26px;
+    font-size: 26px;
     margin-top: 16px;
-    text-align: center;
+    text-align: right;
+    margin-left: 650px;
 }
 /* gallery */
 
