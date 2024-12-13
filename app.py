@@ -3,10 +3,9 @@ from reservation_system import ReservationSystem
 import re
 
 app = Flask(__name__)
-app.secret_key = 'your_secret_key_here'  # For sessions
+app.secret_key = 'secret_key'  
 
 reservation_system = ReservationSystem()
-
 
 users = {
     "admin": {"password": "admin123", "email": "admin@example.com"}
@@ -112,7 +111,6 @@ def all_bookings():
     bookings = reservation_system.get_all_bookings()  # Retrieve all bookings
     return jsonify(bookings)
 
-
 @app.route('/next_booking')
 def next_booking():
     # Peek at the next booking
@@ -202,14 +200,10 @@ def admin_queue():
 
 @app.route('/admin/table_availability', methods=['GET'])
 def admin_table_availability():
-    """
-    Displays table availability with real-time data from the booking queue.
-    """
     if 'username' not in session or session['username'] != 'admin':
         flash('Access denied!', 'error')
         return redirect(url_for('login'))
 
-    # Calculate table availability dynamically based on the booking queue
     table_availability = [
         {"type": "1 person", "available": len([b for b in reservation_system.booking_queue if reservation_system.user_bookings[b]['people'] == '1']), "total": 30},
         {"type": "2-4 persons", "available": len([b for b in reservation_system.booking_queue if reservation_system.user_bookings[b]['people'] in ['2', '3', '4']]), "total": 30}
@@ -220,20 +214,15 @@ def admin_table_availability():
 
 @app.route('/admin/update_table/<table_type>', methods=['POST'])
 def update_table(table_type):
-    """
-    Updates table availability by dequeuing the next booking for the specified table type.
-    """
     if 'username' not in session or session['username'] != 'admin':
         flash('Access denied!', 'error')
         return redirect(url_for('login'))
 
-    # Map table type to the people field
     table_mapping = {
         "1 person": "1",
         "2-4 persons": ["2", "3", "4"]
     }
 
-    # Get the matching booking
     for booking_id in list(reservation_system.booking_queue):
         booking = reservation_system.user_bookings.get(booking_id)
         if booking and booking['people'] in table_mapping.get(table_type, []):
@@ -241,10 +230,8 @@ def update_table(table_type):
             flash(f"Booking {booking_id} processed for {table_type}.", 'success')
             return redirect(url_for('admin_table_availability'))
 
-    # If no booking matched the table type
     flash(f"No bookings available for {table_type}.", 'error')
     return redirect(url_for('admin_table_availability'))
-
 
 
 @app.route('/admin/cancel_booking/<booking_id>', methods=['POST'])
