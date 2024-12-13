@@ -5,8 +5,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SmartQ</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        .flash-messages {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            width: 300px;
+        }
+        .flash-messages .alert {
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .flash-messages .alert-success {
+            background-color: #dff0d8;
+            color: #3c763d;
+            border: 1px solid #d6e9c6;
+        }
+        .flash-messages .alert-error {
+            background-color: #f2dede;
+            color: #a94442;
+            border: 1px solid #ebccd1;
+        }
+    </style>
 </head>
 <body>
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-messages">
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
     <!-- Navbar -->
     <header>
         <nav>
@@ -103,43 +141,34 @@
             <p class="sub-title">
                 Book Your Table Now and Have a Great meal!
             </p>
-            <form action="">
-                <div class="first">
-                    <div class="input">
-                        <p>
-                            Your Full name?
-                        </p>
-                        <input type="text" placeholder="Write your name here..">
-                    </div>
-                    <div class="input">
-                        <p>
-                            Your email address?
-                        </p>
-                        <input type="email" placeholder="Write your email here..">
+            <!-- In the booking section of index.html -->
+        <form action="/book" method="post">
+            <div class="first">
+                <div class="input">
+                    <p>Your Full name?</p>
+                    <input type="text" name="name" placeholder="Write your name here.." required>
+                </div>
+                <div class="input">
+                    <p>Your email address?</p>
+                    <input type="email" name="email" placeholder="Write your email here.." required>
+                </div>
+            </div>
+            <div class="mid">
+                <div class="input">
+                    <p>How many people?</p>
+                    <div class="input-i">
+                        <select name="people" required>
+                            <option value="">Select number of people</option>
+                            <option value="2">2 people</option>
+                            <option value="3">3 people</option>
+                            <option value="4">4 people</option>
+                        </select>
                     </div>
                 </div>
-                <div class="mid"> <div class="input">
-                    <p>
-                        How many people?
-                    </p>
-                    <div class="input-i">
-                        <select name="" id="">
-                            <option value="0">
-                                2 people
-                            </option>
-                            <option value="1">
-                                3 people
-                            </option>
-                            <option value="2">
-                                4 people
-                            </option>
-                        </section>
-                    </div>
-                </div> <div class="input">
+                <div class="input">
                     <p>What Time?</p>
                     <div class="input-i">
-                        <input type="time"
-                        placeholder="10:00 AM">
+                        <input type="time" name="time" placeholder="10:00 AM" required>
                     </div>
                 </div>
             </div>
@@ -147,23 +176,20 @@
                 <div class="input">
                     <p>What is the date?</p>
                     <div class="input-date">
-                        <input type="date" id="date-input" class="custom-date-input">
+                        <input type="date" name="date" id="date-input" class="custom-date-input" required>
                     </div>
                 </div>
             </div>            
             <div class="input">
-                <p>
-                    Your phone number?
-                </p>
+                <p>Your phone number?</p>
                 <div>
-                    <input type="phone"
-                    placeholder="Write your number here..">
+                    <input type="tel" name="phone" placeholder="Write your number here.." required>
                 </div>
             </div>
-            <button class="btn">
+            <button type="submit" class="btn">
                 SUBMIT
             </button>
-            </form>
+        </form>
         </section>
         <!-- contact -->
          <section class="contact" id="contact">

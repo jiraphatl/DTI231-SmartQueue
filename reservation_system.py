@@ -1,103 +1,92 @@
 # reservation_system.py
 from collections import deque
-from typing import Dict, List, Optional
 import uuid
 
 class ReservationSystem:
     def __init__(self):
-        # Queue to manage booking order (FIFO)
+        # Queue to manage booking order
         self.booking_queue = deque()
         
-        # Hash table to store user reservations
-        self.user_reservations = {}
-        
-        # Hash table to store reservation details
-        self.reservation_details = {}
-
-    def add_reservation(self, user_info: Dict[str, str]) -> str:
+        # Hash table (dictionary) to store user information
+        self.user_bookings = {}
+    
+    def enqueue_booking(self, booking_details):
         """
-        Add a new reservation to the system
+        Add a new booking to the queue and store user details
         
-        :param user_info: Dictionary containing user reservation details
-        :return: Reservation ID
+        Args:
+            booking_details (dict): Contains user booking information
+        
+        Returns:
+            str: Unique booking ID
         """
-        # Generate unique reservation ID
-        reservation_id = str(uuid.uuid4())
+        # Generate a unique booking ID
+        booking_id = str(uuid.uuid4())[:8]
         
-        # Add reservation to queue
-        self.booking_queue.append(reservation_id)
+        # Add booking to queue
+        self.booking_queue.append(booking_id)
         
-        # Store user information and reservation details
-        self.user_reservations[reservation_id] = user_info
-        self.reservation_details[reservation_id] = {
-            'status': 'Pending',
-            'timestamp': len(self.booking_queue)
-        }
+        # Store user details with booking ID
+        booking_details['booking_id'] = booking_id
+        self.user_bookings[booking_id] = booking_details
         
-        return reservation_id
-
-    def get_next_reservation(self) -> Optional[Dict[str, str]]:
+        return booking_id
+    
+    def dequeue_booking(self):
         """
-        Process next reservation in the queue
+        Remove and return the next booking in queue
         
-        :return: Next reservation details or None if queue is empty
+        Returns:
+            dict: Details of the next booking, or None if queue is empty
         """
         if not self.booking_queue:
             return None
         
-        # Get next reservation ID
-        reservation_id = self.booking_queue.popleft()
+        # Get and remove the first booking ID from queue
+        booking_id = self.booking_queue.popleft()
         
-        # Retrieve user information
-        user_info = self.user_reservations.get(reservation_id)
-        
-        # Update reservation status
-        if reservation_id in self.reservation_details:
-            self.reservation_details[reservation_id]['status'] = 'Processed'
-        
-        return {
-            'reservation_id': reservation_id,
-            **user_info
-        }
-
-    def cancel_reservation(self, reservation_id: str) -> bool:
+        # Retrieve and return booking details
+        return self.user_bookings.pop(booking_id, None)
+    
+    def peek_next_booking(self):
         """
-        Cancel a specific reservation
+        View the next booking without removing it
         
-        :param reservation_id: ID of the reservation to cancel
-        :return: True if successfully cancelled, False otherwise
+        Returns:
+            dict: Details of the next booking, or None if queue is empty
         """
-        if reservation_id not in self.user_reservations:
-            return False
-        
-        # Remove from user reservations
-        del self.user_reservations[reservation_id]
-        
-        # Remove from reservation details
-        del self.reservation_details[reservation_id]
-        
-        return True
-
-    def get_reservation_status(self, reservation_id: str) -> Optional[Dict[str, str]]:
-        """
-        Get status of a specific reservation
-        
-        :param reservation_id: ID of the reservation
-        :return: Reservation status details or None if not found
-        """
-        if reservation_id not in self.reservation_details:
+        if not self.booking_queue:
             return None
         
-        return {
-            'user_info': self.user_reservations.get(reservation_id, {}),
-            'status': self.reservation_details[reservation_id]['status'],
-            'queue_position': list(self.booking_queue).index(reservation_id) + 1 if reservation_id in self.booking_queue else 'Processed'
-        }
-
-    def get_current_queue(self) -> List[str]:
+        # Get the first booking ID without removing
+        next_booking_id = self.booking_queue[0]
+        return self.user_bookings.get(next_booking_id)
+    
+    def get_all_bookings(self):
         """
-        Get current booking queue
+        Get all current bookings
         
-        :return: List of reservation IDs in queue
+        Returns:
+            list: List of all current bookings
         """
-        return list(self.booking_queue)
+        return list(self.user_bookings.values())
+    
+    def cancel_booking(self, booking_id):
+        """
+        Cancel a specific booking
+        
+        Args:
+            booking_id (str): Unique ID of the booking to cancel
+        
+        Returns:
+            bool: True if booking was cancelled, False otherwise
+        """
+        if booking_id in self.user_bookings:
+            # Remove from queue
+            self.booking_queue.remove(booking_id)
+            
+            # Remove from user bookings
+            del self.user_bookings[booking_id]
+            
+            return True
+        return False
