@@ -89,14 +89,26 @@ def book_table():
         # Add booking to reservation system
         booking_id = reservation_system.enqueue_booking(booking_details)
         
-        # Confirm booking
-        flash(f'Booking successful! Your booking ID is {booking_id}', 'success')
-        return redirect(url_for('index') + '#booking')
+        # Redirect to the success page with booking details
+        return redirect(url_for('booking_success', booking_id=booking_id))
     
     except Exception as e:
         # Handle any unexpected errors
         flash(f'An error occurred: {str(e)}', 'error')
         return redirect(url_for('index') + '#booking')
+
+@app.route('/booking_success/<booking_id>')
+def booking_success(booking_id):
+    booking = reservation_system.user_bookings.get(booking_id)
+    if not booking:
+        flash('Booking not found', 'error')
+        return redirect(url_for('index'))
+    return render_template('success.html', booking=booking)
+
+@app.route('/all_bookings')
+def all_bookings():
+    bookings = reservation_system.get_all_bookings()  # Retrieve all bookings
+    return jsonify(bookings)
 
 
 @app.route('/next_booking')
