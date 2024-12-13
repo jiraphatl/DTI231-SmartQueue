@@ -22,10 +22,24 @@ def login():
         if user and user['password'] == password:
             session['username'] = username
             flash('Login successful!', 'success')
-            return redirect(url_for('index'))  
+
+            # Check if the logged-in user is admin
+            if username == "admin":
+                return redirect(url_for('admin'))  # Redirect to admin page if admin
+            return redirect(url_for('index'))  # Redirect to index for regular users
         else:
             flash('Invalid username or password', 'error')
     return render_template('login.html')
+
+@app.route('/admin')
+def admin():
+    # Check if the user is logged in and is an admin
+    if 'username' not in session or session['username'] != 'admin':
+        flash('Access denied! Only admin users can access this page.', 'error')
+        return redirect(url_for('login'))  # Redirect to login if not admin
+
+    # Render the admin page
+    return render_template('admin.html')
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -174,6 +188,78 @@ def booking_success(booking_id):
         flash('Booking not found', 'error')
         return redirect(url_for('index'))
     return render_template('success.html', booking=booking)
+
+@app.route('/admin/queue', methods=['GET'])
+def admin_queue():
+    if 'username' not in session or session['username'] != 'admin':
+        flash('Access denied!', 'error')
+        return redirect(url_for('login'))
+
+    all_bookings = reservation_system.get_all_bookings()
+    next_booking = reservation_system.peek_next_booking()
+
+    return render_template('admin_queue.html', bookings=all_bookings, next_booking=next_booking)
+
+@app.route('/admin/table_availability', methods=['GET'])
+def admin_table_availability():
+    """
+    Displays table availability with real-time data from the booking queue.
+    """
+    if 'username' not in session or session['username'] != 'admin':
+        flash('Access denied!', 'error')
+        return redirect(url_for('login'))
+
+    # Calculate table availability dynamically based on the booking queue
+    table_availability = [
+        {"type": "1 person", "available": len([b for b in reservation_system.booking_queue if reservation_system.user_bookings[b]['people'] == '1']), "total": 30},
+        {"type": "2-4 persons", "available": len([b for b in reservation_system.booking_queue if reservation_system.user_bookings[b]['people'] in ['2', '3', '4']]), "total": 30}
+    ]
+
+    return render_template('admin_table_availability.html', table_availability=table_availability)
+
+
+@app.route('/admin/update_table/<table_type>', methods=['POST'])
+def update_table(table_type):
+    """
+    Updates table availability by dequeuing the next booking for the specified table type.
+    """
+    if 'username' not in session or session['username'] != 'admin':
+        flash('Access denied!', 'error')
+        return redirect(url_for('login'))
+
+    # Map table type to the people field
+    table_mapping = {
+        "1 person": "1",
+        "2-4 persons": ["2", "3", "4"]
+    }
+
+    # Get the matching booking
+    for booking_id in list(reservation_system.booking_queue):
+        booking = reservation_system.user_bookings.get(booking_id)
+        if booking and booking['people'] in table_mapping.get(table_type, []):
+            reservation_system.dequeue_booking()  # Dequeue the booking
+            flash(f"Booking {booking_id} processed for {table_type}.", 'success')
+            return redirect(url_for('admin_table_availability'))
+
+    # If no booking matched the table type
+    flash(f"No bookings available for {table_type}.", 'error')
+    return redirect(url_for('admin_table_availability'))
+
+
+
+@app.route('/admin/cancel_booking/<booking_id>', methods=['POST'])
+def cancel_booking(booking_id):
+    if 'username' not in session or session['username'] != 'admin':
+        flash('Access denied!', 'error')
+        return redirect(url_for('login'))
+
+    success = reservation_system.cancel_booking(booking_id)
+    if success:
+        flash(f"Booking {booking_id} canceled successfully.", 'success')
+    else:
+        flash(f"Booking {booking_id} not found.", 'error')
+
+    return redirect(url_for('admin_queue'))
 
 if __name__ == '__main__':
     app.run(debug=True)

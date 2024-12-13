@@ -33,20 +33,12 @@ class ReservationSystem:
         return booking_id
     
     def dequeue_booking(self):
-        """
-        Remove and return the next booking in queue
-        
-        Returns:
-            dict: Details of the next booking, or None if queue is empty
-        """
-        if not self.booking_queue:
-            return None
-        
-        # Get and remove the first booking ID from queue
-        booking_id = self.booking_queue.popleft()
-        
-        # Retrieve and return booking details
-        return self.user_bookings.pop(booking_id, None)
+        if self.booking_queue:
+            booking_id = self.booking_queue.popleft()
+            return self.user_bookings.pop(booking_id, None)  # Remove from queue and user bookings
+        return None
+
+
     
     def peek_next_booking(self):
         """
@@ -55,15 +47,13 @@ class ReservationSystem:
         Returns:
             dict: Details of the next booking, or None if queue is empty
         """
-        if not self.booking_queue:
-            return None
-        
-        # Get the first booking ID without removing
-        next_booking_id = self.booking_queue[0]
-        return self.user_bookings.get(next_booking_id)
+        if self.booking_queue:
+            next_id = self.booking_queue[0]
+            return self.user_bookings[next_id]
+        return None
     
     def get_all_bookings(self):
-        return list(self.user_bookings.values())
+        return [self.user_bookings[booking_id] for booking_id in self.booking_queue]
     
     def cancel_booking(self, booking_id):
         """

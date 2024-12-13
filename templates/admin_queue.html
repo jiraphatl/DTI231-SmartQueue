@@ -1,0 +1,33 @@
+{% extends "admin.html" %}
+
+{% block content %}
+<div class="queue-section">
+    <h1>Customer Queue</h1>
+    {% if next_booking %}
+        <div class="next-booking">
+            <h2>Next in Queue</h2>
+            <p><strong>Booking ID:</strong> {{ next_booking['booking_id'] }}</p>
+            <p><strong>Name:</strong> {{ next_booking['name'] }}</p>
+            <p><strong>Table:</strong> {{ next_booking['people'] }} persons</p>
+            <form action="{{ url_for('cancel_booking', booking_id=next_booking['booking_id']) }}" method="POST">
+                <button type="submit" class="btn-cancel">Cancel</button>
+            </form>                   
+        </div>
+    {% else %}
+        <p>No bookings available.</p>
+    {% endif %}
+
+    <h2>All Bookings</h2>
+    {% for booking in bookings %}
+        <div class="booking-card">
+            <p><strong>Booking ID:</strong> {{ booking['booking_id'] }}</p>
+            <p><strong>Name:</strong> {{ booking['name'] }}</p>
+            <p><strong>Phone:</strong> {{ booking['phone'] }}</p>
+            <p><strong>People:</strong> {{ booking['people'] }}</p>
+            <form action="{{ url_for('cancel_booking', booking_id=booking['booking_id']) }}" method="POST">
+                <button type="submit" class="btn-cancel">Cancel</button>
+            </form>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

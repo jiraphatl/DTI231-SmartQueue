@@ -3,30 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
 </head>
 <body>
-    <div class="container">
-        <h2>Welcome Admin!</h2>
-        <h3>Registered Users</h3>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Username</th>
-                    <th>Role</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for user, details in users.items() %}
-                <tr>
-                    <td>{{ user }}</td>
-                    <td>{{ details.role }}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        <a href="{{ url_for('logout') }}" class="btn btn-primary">Logout</a>
-    </div>
+    <header>
+        <nav>
+            <ul class="left-links">
+                <li><a href="{{ url_for('admin_queue') }}" class="link">Customer Queue</a></li>
+            </ul>
+            <ul>
+                <a href="{{ url_for('admin') }}" class="logo">
+                    <img src="{{ url_for('static', filename='images/admin.png') }}" alt="Admin Logo">
+                </a>
+            </ul>
+            <ul class="right-links">
+                <li><a href="{{ url_for('admin_table_availability') }}" class="link">Table Availability</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="content">
+            {% block content %}{% endblock %}
+        </section>
+    </main>
+    <footer>
+        <p>Admin Panel - SmartQ</p>
+    </footer>
 </body>
 </html>

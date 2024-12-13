@@ -1,0 +1,17 @@
+{% extends "admin.html" %}
+
+{% block content %}
+<div class="table-availability-section">
+    <h1>Table Availability</h1>
+        {% for table in table_availability %}
+        <div class="table-card">
+            <h3>{{ table['type'] }}</h3>
+            <p><strong>Available Now:</strong> {{ table['available'] }}</p>
+            <p><strong>Total Tables:</strong> {{ table['total'] }}</p>
+            <form action="{{ url_for('update_table', table_type=table['type']) }}" method="POST">
+                <button type="submit" class="btn-update">Update Availability</button>
+            </form>            
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
