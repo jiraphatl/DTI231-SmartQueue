@@ -198,6 +198,14 @@ html{
     padding: 40px;
 }
 
+.gallery .title {
+    width: 400px;
+    font-size: 80px;
+    color: #fff;
+    margin-top: 16px;
+    text-align: center;
+}
+
 .gallery-images {
     display: flex;
     align-items: center;
@@ -205,6 +213,12 @@ html{
     margin-bottom: 100px;
     gap: 1rem;
 }
+
+.gallery-images img {
+    max-width: 300px; /* ลดขนาดความกว้าง */
+    height: auto; /* คงอัตราส่วนภาพ */
+}
+
 
 .gallery-images div{
     width: min-content;
