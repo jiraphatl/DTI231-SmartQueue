@@ -6,6 +6,7 @@
     --white: #FFFFFF;
     --light-gray: #F5F5F5;
     --green: #28a745;
+    
 }
 
 body {
@@ -100,7 +101,11 @@ h2, p {
 
 /* Login Page Styles */
 .login-page {
-    background: #f6f5f7;
+    background: #8B0000;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .login-container {
@@ -215,4 +220,9 @@ h2, p {
 .signup-link a:hover {
     text-decoration: underline;
 >>>>>>> f716674c8a238a61f817c1081b65e14aa7be1463
+}
+img {
+    border-radius: 8px;
+    max-width: 100%;
+    height: auto;
 }
