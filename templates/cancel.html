@@ -1,0 +1,31 @@
+<!-- Add this script at the end of the body tag in your existing index.html -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const bookingForm = document.querySelector('.booking form');
+        
+        bookingForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(bookingForm);
+            
+            fetch('/book', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    alert(`Reservation Successful! Your Reservation ID is: ${data.reservation_id}`);
+                    // Optional: Reset form
+                    bookingForm.reset();
+                } else {
+                    alert('Reservation failed. Please try again.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again.');
+            });
+        });
+    });
+    </script>
