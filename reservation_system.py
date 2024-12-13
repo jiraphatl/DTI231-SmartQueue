@@ -63,12 +63,6 @@ class ReservationSystem:
         return self.user_bookings.get(next_booking_id)
     
     def get_all_bookings(self):
-        """
-        Get all current bookings
-        
-        Returns:
-            list: List of all current bookings
-        """
         return list(self.user_bookings.values())
     
     def cancel_booking(self, booking_id):
