@@ -383,7 +383,7 @@ option{
     min-height: 100vh;
     color: white;
     background-image: url(/static/images/yellow\ dots.png);
-    background-color: #141414;
+    background-color: #cc1100;
     background-size: auto;
     background-repeat: no-repeat;
     background-position: right bottom;
@@ -420,7 +420,7 @@ option{
 
 .contact-box {
     padding: 50px;
-    background-color: #1c1c1c;
+    background-color: #cc1100;
     color: #1c1c1c;
     display: flex;
     align-items: center;
@@ -450,7 +450,7 @@ option{
 
 /* footer */
 footer{
-    background-color: #1c1c1c;
+    background-color: #cc1100;
     color: white;
     border-top: 6px dotted #ffc901;
     display: flex;
