@@ -1,0 +1,26 @@
+<!-- templates/next_booking.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Next Booking</title>
+</head>
+<body>
+    <h1>Next Booking in Queue</h1>
+    {% if booking %}
+    <div>
+        <p><strong>Booking ID:</strong> {{ booking.booking_id }}</p>
+        <p><strong>Name:</strong> {{ booking.name }}</p>
+        <p><strong>Email:</strong> {{ booking.email }}</p>
+        <p><strong>Phone:</strong> {{ booking.phone }}</p>
+        <p><strong>Number of People:</strong> {{ booking.people }}</p>
+        <p><strong>Date:</strong> {{ booking.date }}</p>
+        <p><strong>Time:</strong> {{ booking.time }}</p>
+    </div>
+    <a href="/process_next_booking">Process this Booking</a>
+    {% else %}
+    <p>No bookings in the queue.</p>
+    {% endif %}
+    <a href="/">Back to Home</a>
+</body>
+</html>
