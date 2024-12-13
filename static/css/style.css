@@ -11,13 +11,13 @@
 .home {
     width: 100%;
     min-height: 100vh;
-    background-image: url(/templates/image/bg.png);
+    background-image: url(/static/images/bg.png);
     background-size: cover;
     display: flex;
     align-items: center;
     justify-content: start;
     position: relative;
-    color: #cc1100;
+    color: #ffc901;
     text-transform: uppercase;
 }
 
@@ -28,9 +28,10 @@
 }
 
 .left img {
-    width: 100%;
-    position: absolute;
-    left: -100px;
+    width: 250%;
+    position: relative;
+    left: -50px;
+    top: 129px;
 }
 
 .right {
@@ -52,10 +53,9 @@ a {
     font-weight: 300;
 }
 
-.rith .top p {
+.right .top p {
     font-size: 48px;
     text-align: right;
-    margin-bottom: 16px;
 }
 
 .right .top a {
@@ -70,11 +70,12 @@ a {
 }
 
 .bottom p {
-    font-size: 48px;
-}
-
-.bottom p span {
-    color: #ffc901 ;
+    font-size: 25px;
+    margin-top: 230px;
+    text-align: center;
+    position: relative;
+    right: 120%;
+    bottom: 25px;
 }
 
 .home-footer {
@@ -106,7 +107,7 @@ nav {
 }
 
 nav .logo img{
-    width: 145px;
+    width: 220px;
 }
 
 nav .logo {
@@ -138,13 +139,13 @@ html{
 /* about us */
 
 .about {
-    width: 100%;
+    width: fit-content;
     min-height: 100vh;
-    background-image: url(/templates/image/about.png);
+    background-image: url(/static/images/about.png);
     background-repeat: no-repeat;
     background-position: right;
     background-size: cover;
-    color: #cc1100;
+    color: #fff;
     padding: 100px;
 }
 
@@ -196,7 +197,7 @@ html{
 .menu {
     width: 100%;
     min-height: 100vh;
-    background-image: url(/templates/image/bg.png);
+    background-image: url(/static/images/bg.png);
     background-size: cover;
     color: #141414;
     padding: 100px;
@@ -238,7 +239,7 @@ html{
 
 .gallery{
     color: #cc1100;
-    background-image: url(/templates/image/bg.png);
+    background-image: url(/static/images/bg.png);
     background-size: cover;
     min-height: 100vh;
     padding: 40px;
@@ -266,7 +267,7 @@ html{
 .booking {
     min-height: 100vh;
     color: #cc1100;
-    background-image: url(/templates/image/bg.png);
+    background-image: url(/static/images/bg.png);
     background-size: cover;
     padding: 60px;
 }
@@ -368,7 +369,7 @@ option{
 .contact {
     min-height: 100vh;
     color: white;
-    background-image: url(/templates/image/yellow\ dots.png);
+    background-image: url(/static/images/yellow\ dots.png);
     background-color: #141414;
     background-size: auto;
     background-repeat: no-repeat;

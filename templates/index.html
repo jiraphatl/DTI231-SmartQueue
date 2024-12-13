@@ -23,7 +23,8 @@
             </ul>
             <ul>
                 <a href="#Home" class="logo">
-                    <img src="./image/logo.png" alt="">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="">
+
                 </a>
             </ul>
             <ul class="riht-links" type="none">
@@ -42,49 +43,46 @@
     <!-- home page -->
     <section id="home" class="home">
         <div class="left">
-            <img src="{{ url_for('static', filename='images/hoem image.png') }}" alt="">
+            <img src="{{ url_for('static', filename='images/home image.png') }}" alt="">
         </div>
         <div class="right"></div>
-        <div class="top">
-            <p>
-                start your meal
-            </p>
-            <a href="#">
-                learn more..
-            </a>
-        </div>
+            <div class="top">
+                <p>
+                    The perfect meal starts with..
+                </p>
+            </div>
         <div class="middle">
             <img src="{{ url_for('static', filename='images/logo.png') }}" alt="">
         </div>
         <div class="bottom">
-            <p>book your <br>
-                table <span>now</span></p>
+            <p>Reserve your table now!</p>
         </div>
     </section>
     <!-- about us page -->
      <section class="about" id="about">
         <div class="about-tetx">
             <div class="title">
-                <img src="/image/yellow wave.png" alt="">
+            <img src="{{ url_for('static', filename='images/yellow wave.png') }}" alt="">
                 <p> ABOUT <span>
-                </span></p> <img src="./image/yellow wave.png" alt="">
-            </div>
+                    <img src="{{ url_for('static', filename='images/yellow wave.png') }}" alt="">
+                </div>
             <p class="about">
-                djsckcnwsecwecwelkcm
+                Secure your seat at SmartQ Shabuzi –
+                where every meal is a smart choice and every moment is worth savoring.
             </p>
-            <a href="#">
+            <a href="#booking">
                 Visit Or Book <span>Now</span>
             </a>
         </div>
      </section>
      <!-- menu page -->
       <section class="menu" id="menu">
-        <img src="/image/keep.png" class="keep" alt="">
+        <img src="{{ url_for('static', filename='images/hand.png') }}" class="keep" alt="">
         <div class="menu-text">
             <div class="title">
-                <img src="./image/white wave.png" alt="">
+                <img src="{{ url_for('static', filename='images/white wave.png') }}" alt="">
                 <p> Our food quality</p>
-                <img src="./image/white wave.png" alt="">
+                <img src="{{ url_for('static', filename='images/white wave.png') }}" alt="">
             </div>
             <p class="des">
                 wacnlkwahnsedujuklqwaunchqa
@@ -100,30 +98,30 @@
       <!-- gallery -->
        <section class="gallery" id="gallery">
         <div class="title">
-            <img src="./image/yellow wave.png" alt="">
+            <img src="{{ url_for('static', filename='images/yellow wave.png') }}" alt="">
             <p>gallery</p>
-            <img src="./image/yellow wave.png" alt="">
+            <img src="{{ url_for('static', filename='images/yellow wave.png') }}" alt="">
         </div>
         <div class="gallery-images">
-            <div><img src="./image/3.png" alt=""></div>
-            <div><img src="./image/4.png" alt=""></div>
+            <div><img src="{{ url_for('static', filename='images/g1.png') }}" alt=""></div>
+            <div><img src="{{ url_for('static', filename='images/g2.png') }}" alt=""></div>
         </div>
         <div>
-            <div><img src="./image/5.png" alt=""></div>
-            <div><img src="./image/6.png" alt=""></div>
-            <div><img src="./image/7.png" alt=""></div>
+            <div><img src="{{ url_for('static', filename='images/g3.png') }}" alt=""></div>
+            <div><img src="{{ url_for('static', filename='images/g4.png') }}" alt=""></div>
+            <div><img src="{{ url_for('static', filename='images/g5.png') }}" alt=""></div>
         </div>
         <div>
-            <div><img src="./image/8.png" alt=""></div>
-            <div><img src="./image/9.png" alt=""></div>
+            <div><img src="{{ url_for('static', filename='images/g6.png') }}" alt=""></div>
+            <div><img src="{{ url_for('static', filename='images/g7.png') }}" alt=""></div>
         </div>
        </section>
        <!-- booking -->
         <section class="booking" id="booking">
             <div class="title">
-                <img src="./image/yellow wave.png" alt="">
+                <img src="{{ url_for('static', filename='images/yellow wave.png') }}" alt="">
                 <p> Book Now </p>
-                <img src="./image/yellow wave.png" alt="">
+                <img src="{{ url_for('static', filename='images/yellow wave.png') }}" alt="">
             </div>
             <p class="sub-title">
                 Book Your Table Now and Have a Great meal!
@@ -197,7 +195,7 @@
         </section>
         <!-- contact -->
          <section class="contact" id="contact">
-            <img src="./image/photo.png" alt="">
+            <img src="{{ url_for('static', filename='images/photo.png') }}" alt="">
             <dir class="para">
                 <i class='bx bus-quote-left'></i>
                 <p>
@@ -216,12 +214,13 @@
                 </p>
                 <a href="#">CONTACT US NOW</a>
             </div>
-            <img src="./image/foodplate.png" alt="">
+            <div><img src="{{ url_for('static', filename='images/foodplate.png') }}" alt=""></div>
          </div>
          <!-- footer -->
           <footer>
             <a href="#Home">
-                <img src="./image/logo.png" alt="">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="">
+
             </a>
             <ul class="links" type="none">
                 <li class="link">
