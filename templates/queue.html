@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Queue Status</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="success-card">
+            <h1>Success!</h1>
+            <p>Your queue number is: <strong>{{ booking.booking_id }}</strong></p>
+        </div>
+        <div class="queue-container">
+            <div>
+                <p>Restaurant: Shabusi</p>
+                <p>Table: {{ booking.table_id }}</p>
+                <p>Time Slot: {{ booking.time_slot }}</p>
+            </div>
+            <a href="{{ url_for('home') }}" class="btn">Back to Home</a>
+        </div>
+    </div>
+</body>
+</html>
